@@ -1,32 +1,27 @@
-SERVER = server
-CLIENT = client
 SOURCES = $(wildcard *.c)
 OBJECTS = $(SOURCES:.c=.o)
-LIBFT_PATH = libft/
-LIBFT_NAME = libft.a
-LIBFT_OBJECTS = $(LIBFT_PATH)*.o
 
-all: $(SERVER) $(CLIENT) libftmake
+all: server client
 
-$(SERVER): ft_server.o libftmake
-	gcc -o server ft_server.o -L$(LIBFT_PATH) -lft
+server: ft_server.o libft
+	gcc -o server ft_server.o -Llibft -lft
 
-$(CLIENT): ft_client.o libftmake
-	gcc -o client ft_client.o -L$(LIBFT_PATH) -lft
-
-libftmake:
-	make -C $(LIBFT_PATH)
+client: ft_client.o libft
+	gcc -o client ft_client.o -Llibft -lft
 
 %.o: %.c
 	gcc -c -Wall -Wextra -Werror $?
 
+libft:
+	make -C libft
+
 clean:
-	make -C $(LIBFT_PATH) clean
 	rm -f $(OBJECTS)
+	make -C libft clean
 
 fclean: clean
-	rm -f $(SERVER) $(CLIENT) $(LIBFT_PATH)$(LIBFT_NAME)
+	rm -f server client libft/libft.a
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all libft clean fclean re
