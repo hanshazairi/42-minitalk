@@ -1,16 +1,21 @@
-SOURCES = $(wildcard *.c)
+SOURCES = server.c client.c
 OBJECTS = $(SOURCES:.c=.o)
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
 all: server client
 
-server: ft_server.o libft
-	gcc -o server ft_server.o -Llibft -lft
+bonus: server client
 
-client: ft_client.o libft
-	gcc -o client ft_client.o -Llibft -lft
+server: server.o libft
+	$(CC) -o $@ $< -Llibft -lft
+
+client: client.o libft
+	$(CC) -o $@ $< -Llibft -lft
 
 %.o: %.c
-	gcc -c -Wall -Wextra -Werror $?
+	$(CC) -c $(CFLAGS) $?
 
 libft:
 	make -C libft
@@ -18,10 +23,10 @@ libft:
 clean:
 	rm -f $(OBJECTS)
 	make -C libft clean
-
+	
 fclean: clean
 	rm -f server client libft/libft.a
 
 re: fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all bonus libft clean fclean re
