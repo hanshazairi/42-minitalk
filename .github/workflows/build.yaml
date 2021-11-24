@@ -1,0 +1,13 @@
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: make
+        run: make
+      - name: make bonus
+        run: make bonus

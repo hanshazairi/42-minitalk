@@ -5,4 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: hanshazairi/42-norminette-action@v1.0.0
+      - uses: hanshazairi/42-norminette-action@v1.1.0
