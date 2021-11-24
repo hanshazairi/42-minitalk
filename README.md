@@ -1,6 +1,7 @@
 # 42cursus - minitalk
 
 ![](https://github.com/hanshazairi/42-minitalk/workflows/norminette/badge.svg)
+![](https://github.com/hanshazairi/42-minitalk/workflows/build/badge.svg)
 ![](https://img.shields.io/tokei/lines/github/hanshazairi/42-minitalk?style=plastic?color=blue)
 
 ## Project Information
